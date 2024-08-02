@@ -43,11 +43,7 @@ def step_impl(context):
         context.resp = requests.delete(f"{rest_endpoint}/{product['id']}")
         assert(context.resp.status_code == HTTP_204_NO_CONTENT)
 
-    #
-    # load the database with new products
-    #
-
-     for row in context.table:
+    for row in context.table:
         payload = {
             "name": row['name'],
             "description": row['description'],
