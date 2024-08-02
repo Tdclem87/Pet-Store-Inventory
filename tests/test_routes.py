@@ -130,7 +130,20 @@ class TestProductRoutes(TestCase):
         self.assertEqual(Decimal(new_product["price"]), test_product.price)
         self.assertEqual(new_product["available"], test_product.available)
         self.assertEqual(new_product["category"], test_product.category.name)
-
+    
+    def test_read_a_product(self):
+        """It should Read a Product"""
+        product = ProductFactory()
+        product.id = None
+        product.create()
+        self.assertIsNotNone(product.id)
+        # Fetch it back
+        found_product = Product.find(product.id)
+        self.assertEqual(found_product.id, product.id)
+        self.assertEqual(found_product.name, product.name)
+        self.assertEqual(found_product.description, product.description)
+        self.assertEqual(found_product.price, product.price)
+        
         #
         # Uncomment this code once READ is implemented
         #
