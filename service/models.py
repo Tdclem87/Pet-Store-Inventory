@@ -103,7 +103,7 @@ class Product(db.Model):
         """
         logger.info("Saving %s", self.name)
         if not self.id:
-        db.session.commit()
+            db.session.commit()
 
     def delete(self):
         """Removes a Product from the data store"""
